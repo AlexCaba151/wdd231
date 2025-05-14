@@ -1,0 +1,73 @@
+/* Larger screen styles - activated with media query */
+
+@media screen and (min-width: 768px) {
+    /* Header adjustments */
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+    }
+    
+    /* Navigation adjustments for larger screens */
+    nav {
+        padding: 0 2rem;
+    }
+    
+    #hamburger-btn {
+        display: none;
+    }
+    
+    #primary-nav {
+        display: flex;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    #primary-nav li {
+        width: auto;
+    }
+    
+    #primary-nav a {
+        padding: 1rem 1.5rem;
+    }
+    
+    /* Main content adjustments */
+    main {
+        padding: 2rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Course grid adjustments */
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Footer adjustments */
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Extra large screens */
+@media screen and (min-width: 1024px) {
+    .header-content {
+        padding: 1.5rem 2rem;
+    }
+    
+    .profile-photo {
+        width: 100px;
+        height: 120px;
+    }
+    
+    .name {
+        font-size: 2.2rem;
+    }
+    
+    main {
+        padding: 2rem 3rem;
+    }
+}
