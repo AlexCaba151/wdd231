@@ -1,0 +1,56 @@
+/* Medium view styles - 35rem (560px) and up */
+@media only screen and (min-width: 35rem) {
+    /* Header */
+    .header-content {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .logo-container {
+      margin-bottom: 0;
+    }
+  
+    .site-name h1 {
+      font-size: 1.8rem;
+    }
+  
+    /* Navigation */
+    #hamburger-btn {
+      display: none;
+    }
+  
+    #primary-nav {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #primary-nav li {
+      margin: 0 0 0 0.5rem;
+    }
+  
+    #primary-nav a {
+      padding: 0.5rem 0.75rem;
+    }
+  
+    /* Directory */
+    #members-container.grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    /* Footer */
+    .footer-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  
+    .footer-logo {
+      margin-bottom: 0;
+    }
+  
+    .footer-contact {
+      text-align: right;
+      margin-bottom: 0;
+    }
+  }
+  

@@ -1,0 +1,42 @@
+/* Large view styles - 64rem (1024px) and up */
+@media only screen and (min-width: 64rem) {
+    /* Header */
+    .site-name h1 {
+      font-size: 2rem;
+    }
+  
+    .site-name p {
+      font-size: 1.1rem;
+    }
+  
+    /* Navigation */
+    #primary-nav li {
+      margin-left: 1rem;
+    }
+  
+    #primary-nav a {
+      padding: 0.5rem 1rem;
+    }
+  
+    /* Directory */
+    #members-container.grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    /* Member Cards */
+    .list .member-card {
+      grid-template-columns: 100px 1fr;
+    }
+  
+    .list .member-img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    /* Footer */
+    .footer-base {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  
