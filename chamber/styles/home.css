@@ -135,7 +135,7 @@
   .hero {
     position: relative;
     background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);
-    background-image: url("../images/hero-bg.png");
+    background-image: url("../images/hero-bg.jpg");
     background-size: cover;
     background-position: center;
     min-height: 60vh;
@@ -575,7 +575,6 @@
     width: 50px;
     height: auto;
     margin-right: 1rem;
-    filter: brightness(0) invert(1);
   }
   
   .footer-name h3 {
