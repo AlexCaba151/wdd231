@@ -61,6 +61,42 @@ document.addEventListener("DOMContentLoaded", () => {
     loadWeather()
     loadSpotlights()
   }
+
+  // Join page functionality
+  const membershipForm = document.getElementById("membership-form")
+  const timestampField = document.getElementById("timestamp")
+
+  if (membershipForm && timestampField) {
+    // Set timestamp when form loads
+    timestampField.value = new Date().toISOString()
+
+    // Modal functionality
+    setupModals()
+
+    // Form validation
+    setupFormValidation()
+  }
+
+  // Thank you page functionality
+  const formDataContainer = document.getElementById("form-data")
+  if (formDataContainer) {
+    displayFormData()
+  }
+
+  // Discover page functionality
+  const attractionsGrid = document.getElementById("attractions-grid")
+  const visitorMessage = document.getElementById("visitor-message")
+
+  if (attractionsGrid) {
+    // Load attractions
+    loadAttractions()
+
+    // Handle visitor tracking
+    handleVisitorTracking()
+
+    // Setup visitor message close button
+    setupVisitorMessage()
+  }
 })
 
 // Fetch member data from JSON file
@@ -321,41 +357,255 @@ function getMembershipLevel(level) {
   }
 }
 
-// Real weather API function (commented out for demo)
-/*
-async function fetchRealWeatherData() {
-  const API_KEY = 'your_openweathermap_api_key';
-  const city = 'Cityville'; // Replace with your city
-  
-  try {
-    // Current weather
-    const currentResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`
-    );
-    const currentData = await currentResponse.json();
-    
-    // 5-day forecast
-    const forecastResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=imperial`
-    );
-    const forecastData = await forecastResponse.json();
-    
-    return {
-      current: {
-        temperature: Math.round(currentData.main.temp),
-        description: currentData.weather[0].description,
-        icon: currentData.weather[0].main.toLowerCase()
-      },
-      forecast: forecastData.list.slice(0, 3).map((item, index) => ({
-        day: index === 0 ? 'Today' : new Date(item.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' }),
-        high: Math.round(item.main.temp_max),
-        low: Math.round(item.main.temp_min),
-        icon: item.weather[0].main.toLowerCase()
-      }))
-    };
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    throw error;
+// JOIN PAGE FUNCTIONALITY
+
+// Setup modals
+function setupModals() {
+  const learnMoreBtns = document.querySelectorAll(".learn-more-btn")
+  const modals = document.querySelectorAll(".modal")
+  const closeBtns = document.querySelectorAll(".close")
+
+  // Open modals
+  learnMoreBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modalId = btn.getAttribute("data-modal")
+      const modal = document.getElementById(modalId)
+      if (modal) {
+        modal.style.display = "block"
+        document.body.style.overflow = "hidden"
+      }
+    })
+  })
+
+  // Close modals
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modalId = btn.getAttribute("data-modal")
+      const modal = document.getElementById(modalId)
+      if (modal) {
+        modal.style.display = "none"
+        document.body.style.overflow = "auto"
+      }
+    })
+  })
+
+  // Close modal when clicking outside
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none"
+        document.body.style.overflow = "auto"
+      }
+    })
+  })
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modals.forEach((modal) => {
+        if (modal.style.display === "block") {
+          modal.style.display = "none"
+          document.body.style.overflow = "auto"
+        }
+      })
+    }
+  })
+}
+
+// Setup form validation
+function setupFormValidation() {
+  const form = document.getElementById("membership-form")
+  const orgTitleInput = document.getElementById("org-title")
+
+  // Custom validation for organizational title
+  if (orgTitleInput) {
+    orgTitleInput.addEventListener("input", () => {
+      const value = orgTitleInput.value
+      const pattern = /^[A-Za-z\s-]{7,}$/
+
+      if (value && !pattern.test(value)) {
+        orgTitleInput.setCustomValidity(
+          "Organizational title must be at least 7 characters and contain only letters, spaces, and hyphens",
+        )
+      } else {
+        orgTitleInput.setCustomValidity("")
+      }
+    })
+  }
+
+  // Form submission
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      // Update timestamp before submission
+      const timestampField = document.getElementById("timestamp")
+      if (timestampField) {
+        timestampField.value = new Date().toISOString()
+      }
+
+      // Form will submit normally to thankyou.html
+    })
   }
 }
-*/
+
+// THANK YOU PAGE FUNCTIONALITY
+
+// Display form data on thank you page
+function displayFormData() {
+  const formDataContainer = document.getElementById("form-data")
+  if (!formDataContainer) return
+
+  // Get URL parameters
+  const urlParams = new URLSearchParams(window.location.search)
+
+  // Required fields to display
+  const requiredFields = [
+    { param: "first-name", label: "First Name" },
+    { param: "last-name", label: "Last Name" },
+    { param: "email", label: "Email Address" },
+    { param: "mobile", label: "Mobile Phone" },
+    { param: "business-name", label: "Business/Organization Name" },
+    { param: "membership-level", label: "Membership Level" },
+    { param: "timestamp", label: "Application Submitted" },
+  ]
+
+  formDataContainer.innerHTML = ""
+
+  requiredFields.forEach((field) => {
+    const value = urlParams.get(field.param)
+    if (value) {
+      const dataItem = document.createElement("div")
+      dataItem.className = "form-data-item"
+
+      let displayValue = value
+
+      // Format specific fields
+      if (field.param === "membership-level") {
+        const levels = {
+          np: "NP Membership (Non-Profit)",
+          bronze: "Bronze Membership",
+          silver: "Silver Membership",
+          gold: "Gold Membership",
+        }
+        displayValue = levels[value] || value
+      } else if (field.param === "timestamp") {
+        displayValue = new Date(value).toLocaleString()
+      }
+
+      dataItem.innerHTML = `
+        <span class="form-data-label">${field.label}:</span>
+        <span class="form-data-value">${displayValue}</span>
+      `
+
+      formDataContainer.appendChild(dataItem)
+    }
+  })
+
+  // If no data found, show message
+  if (formDataContainer.children.length === 0) {
+    formDataContainer.innerHTML = `
+      <div class="form-data-item">
+        <span class="form-data-value">No application data found. Please submit the form again.</span>
+      </div>
+    `
+  }
+}
+
+// DISCOVER PAGE FUNCTIONALITY
+
+// Load attractions from JSON
+async function loadAttractions() {
+  const attractionsGrid = document.getElementById("attractions-grid")
+  if (!attractionsGrid) return
+
+  try {
+    const response = await fetch("data/attractions.json")
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const attractions = await response.json()
+    displayAttractions(attractions)
+  } catch (error) {
+    console.error("Error loading attractions:", error)
+    attractionsGrid.innerHTML = `
+      <div class="error">
+        <p>Unable to load attractions. Please try again later.</p>
+      </div>
+    `
+  }
+}
+
+// Display attractions in grid
+function displayAttractions(attractions) {
+  const attractionsGrid = document.getElementById("attractions-grid")
+  if (!attractionsGrid || !attractions) return
+
+  attractionsGrid.innerHTML = ""
+
+  attractions.forEach((attraction) => {
+    const attractionCard = document.createElement("div")
+    attractionCard.className = "attraction-card"
+
+    attractionCard.innerHTML = `
+      <h2>${attraction.name}</h2>
+      <figure>
+        <img src="images/${attraction.image}" alt="${attraction.name}" loading="lazy">
+      </figure>
+      <address>${attraction.address}</address>
+      <p>${attraction.description}</p>
+      <button class="learn-more-btn" onclick="alert('More information about ${attraction.name} coming soon!')">
+        Learn More
+      </button>
+    `
+
+    attractionsGrid.appendChild(attractionCard)
+  })
+}
+
+// Handle visitor tracking with localStorage
+function handleVisitorTracking() {
+  const visitorText = document.getElementById("visitor-text")
+  if (!visitorText) return
+
+  const now = Date.now()
+  const lastVisit = localStorage.getItem("chamber-last-visit")
+
+  let message = ""
+
+  if (!lastVisit) {
+    // First visit
+    message = "Welcome! Let us know if you have any questions."
+  } else {
+    const lastVisitTime = Number.parseInt(lastVisit)
+    const timeDifference = now - lastVisitTime
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+
+    if (daysDifference < 1) {
+      // Less than a day
+      message = "Back so soon! Awesome!"
+    } else if (daysDifference === 1) {
+      // Exactly 1 day
+      message = "You last visited 1 day ago."
+    } else {
+      // More than 1 day
+      message = `You last visited ${daysDifference} days ago.`
+    }
+  }
+
+  visitorText.textContent = message
+
+  // Store current visit time
+  localStorage.setItem("chamber-last-visit", now.toString())
+}
+
+// Setup visitor message close functionality
+function setupVisitorMessage() {
+  const closeBtn = document.getElementById("close-message")
+  const visitorMessage = document.getElementById("visitor-message")
+
+  if (closeBtn && visitorMessage) {
+    closeBtn.addEventListener("click", () => {
+      visitorMessage.classList.add("hidden")
+    })
+  }
+}

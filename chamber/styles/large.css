@@ -27,6 +27,14 @@
     .list .member-card {
       grid-template-columns: 100px 1fr;
     }
+        /* Attractions Grid - 3 column layout */
+        .attractions-grid {
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-areas:
+            "attraction1 attraction2 attraction3"
+            "attraction4 attraction5 attraction6"
+            "attraction7 attraction8 attraction8";
+    }
   
     .list .member-img {
       width: 100px;

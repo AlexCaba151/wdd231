@@ -1,0 +1,59 @@
+[
+    {
+      "id": 1,
+      "name": "Historic Downtown Square",
+      "image": "downtown-square.webp",
+      "address": "100 Main Street, Cityville, ST 12345",
+      "description": "The heart of Cityville featuring beautifully preserved 19th-century architecture, boutique shops, and charming cafes. The square hosts weekly farmers markets and seasonal festivals throughout the year."
+    },
+    {
+      "id": 2,
+      "name": "Riverside Park",
+      "image": "riverside-park.webp",
+      "address": "500 River Road, Cityville, ST 12345",
+      "description": "A 50-acre park along the Cityville River featuring walking trails, picnic areas, a playground, and boat rentals. Perfect for family outings and outdoor recreation activities."
+    },
+    {
+      "id": 3,
+      "name": "Cityville Art Museum",
+      "image": "art-museum.webp",
+      "address": "250 Culture Avenue, Cityville, ST 12345",
+      "description": "Home to an impressive collection of regional and contemporary art. The museum features rotating exhibitions, educational programs, and a sculpture garden."
+    },
+    {
+      "id": 4,
+      "name": "Mountain View Observatory",
+      "image": "observatory.webp",
+      "address": "1000 Hilltop Drive, Cityville, ST 12345",
+      "description": "State-of-the-art observatory offering public stargazing events and educational programs. Enjoy panoramic views of the city and surrounding mountains."
+    },
+    {
+      "id": 5,
+      "name": "Heritage Village",
+      "image": "heritage-village.webp",
+      "address": "750 Heritage Lane, Cityville, ST 12345",
+      "description": "Living history museum showcasing life in the 1800s with authentic buildings, costumed interpreters, and hands-on demonstrations of traditional crafts."
+    },
+    {
+      "id": 6,
+      "name": "Cityville Farmers Market",
+      "image": "farmers-market.webp",
+      "address": "Downtown Square, Cityville, ST 12345",
+      "description": "Weekly market featuring fresh local produce, artisanal foods, handmade crafts, and live music. Open Saturdays from 8 AM to 2 PM year-round."
+    },
+    {
+      "id": 7,
+      "name": "Adventure Sports Center",
+      "image": "sports-center.webp",
+      "address": "300 Adventure Way, Cityville, ST 12345",
+      "description": "Premier destination for outdoor enthusiasts offering rock climbing, kayaking, hiking guides, and equipment rentals. Features both indoor and outdoor activities."
+    },
+    {
+      "id": 8,
+      "name": "Cityville Botanical Gardens",
+      "image": "botanical-gardens.webp",
+      "address": "400 Garden Path, Cityville, ST 12345",
+      "description": "Beautiful 20-acre botanical garden featuring native plants, themed gardens, walking paths, and a butterfly conservatory. A peaceful retreat in the heart of the city."
+    }
+  ]
+  
