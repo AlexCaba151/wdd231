@@ -24,18 +24,39 @@ function hideLoading(elementId) {
 }
 
 function isFavorite(movieId) {
-  // Replace with actual favorite check implementation
-  return localStorage.getItem(`favorite-${movieId}`) === "true"
+  try {
+    const favorites = localStorage.getItem("movieFavorites")
+    if (!favorites) return false
+    const favoritesArray = JSON.parse(favorites)
+    return favoritesArray.includes(movieId.toString())
+  } catch (error) {
+    console.error("Error checking favorite:", error)
+    return false
+  }
 }
 
 function toggleFavorite(movieId) {
-  const isCurrentlyFavorite = isFavorite(movieId)
-  if (isCurrentlyFavorite) {
-    localStorage.removeItem(`favorite-${movieId}`)
+  try {
+    const favorites = localStorage.getItem("movieFavorites")
+    let favoritesArray = favorites ? JSON.parse(favorites) : []
+
+    const movieIdStr = movieId.toString()
+    const isCurrentlyFavorite = favoritesArray.includes(movieIdStr)
+
+    if (isCurrentlyFavorite) {
+      // Remove from favorites
+      favoritesArray = favoritesArray.filter((id) => id !== movieIdStr)
+      localStorage.setItem("movieFavorites", JSON.stringify(favoritesArray))
+      return false
+    } else {
+      // Add to favorites
+      favoritesArray.push(movieIdStr)
+      localStorage.setItem("movieFavorites", JSON.stringify(favoritesArray))
+      return true
+    }
+  } catch (error) {
+    console.error("Error toggling favorite:", error)
     return false
-  } else {
-    localStorage.setItem(`favorite-${movieId}`, "true")
-    return true
   }
 }
 
@@ -348,14 +369,14 @@ function openMovieModal(movieId) {
     </div>
   `
 
-  movieModal.style.display = "flex"
+  movieModal.classList.add("show")
   document.body.style.overflow = "hidden"
 }
 
 // Close movie modal
 function closeMovieModal() {
   if (movieModal) {
-    movieModal.style.display = "none"
+    movieModal.classList.remove("show")
     document.body.style.overflow = "auto"
   }
 }
@@ -369,7 +390,7 @@ function updateModalFavoriteButton(movieId, isFavorite) {
       modalBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Remove from Favorites`
     } else {
       modalBtn.classList.remove("favorited")
-      modalBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Add to Favorites`
+      modalBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Add to Favorites`
     }
   }
 }
@@ -397,7 +418,7 @@ movieModal?.addEventListener("click", (e) => {
 
 // Close modal with Escape key
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && movieModal?.style.display === "flex") {
+  if (e.key === "Escape" && movieModal?.classList.contains("show")) {
     closeMovieModal()
   }
 })
