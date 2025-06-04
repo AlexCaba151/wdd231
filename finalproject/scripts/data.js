@@ -213,7 +213,7 @@ export const MOVIES_DATA = [
     title: "One Flew Over the Cuckoo's Nest",
     overview: "A criminal pleads insanity and is admitted to a mental institution, where he rebels against the oppressive nurse.",
     poster_path: "images/oneflew.jpg",
-    backdrop_path: "images/oneflew-bg.jpg",
+    backdrop_path: "images/oneflew-bg.png",
     release_date: "1975-11-19",
     vote_average: 8.7,
     genre_ids: [18],
