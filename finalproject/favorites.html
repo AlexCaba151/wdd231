@@ -6,46 +6,82 @@
   <meta name="author" content="Yerlin A. Rodriguez">
   <meta name="description" content="View and manage your favorite movies collection. Keep track of films you love and want to watch again.">
   
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com/favorites.html">
-  <meta property="og:title" content="My Favorites - Movie Discovery">
-  <meta property="og:description" content="View and manage your favorite movies collection.">
-  <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://yourdomain.com/favorites.html">
-  <meta property="twitter:title" content="My Favorites - Movie Discovery">
-  <meta property="twitter:description" content="View and manage your favorite movies collection.">
-  <meta property="twitter:image" content="https://yourdomain.com/images/og-image.jpg">
+  <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Favorite Movies - Movie Discovery">
+    <meta property="og:description" content="View and manage your favorite movies collection. Keep track of films you love and want to watch again.">
+    <meta property="og:image" content="https://alexcaba151.github.io/wdd231/finalproject/images/finalproject/images/favicon-16x16.png">
+    <meta property="og:url" content="https://alexcaba151.github.io/wdd231/finalproject/favorites.html">
   
   <title>My Favorites - Movie Discovery</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-content">
-        <a href="index.html" class="navbar-logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
-            <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2Z"></path>
-            <path d="M12 12v8"></path>
-            <path d="M8 8v.01"></path>
-            <path d="M12 8v.01"></path>
-            <path d="M16 8v.01"></path>
-            <path d="M8 12v.01"></path>
-            <path d="M16 12v.01"></path>
-            <path d="M8 16v.01"></path>
-            <path d="M16 16v.01"></path>
-          </svg>
-          <span>Movie Discovery</span>
-        </a>
+  
+  <!-- Header containing Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-content">
+          <a href="index.html" class="navbar-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+              <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2Z"></path>
+              <path d="M12 12v8"></path>
+              <path d="M8 8v.01"></path>
+              <path d="M12 8v.01"></path>
+              <path d="M16 8v.01"></path>
+              <path d="M8 12v.01"></path>
+              <path d="M16 12v.01"></path>
+              <path d="M8 16v.01"></path>
+              <path d="M16 16v.01"></path>
+            </svg>
+            <span>Movie Discovery</span>
+          </a>
 
-        <!-- Desktop Navigation -->
-        <div class="navbar-links desktop-nav">
+          <!-- Desktop Navigation -->
+          <div class="navbar-links desktop-nav">
+            <a href="index.html" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2Z"></path>
+                <path d="M12 12v8"></path>
+                <path d="M8 8v.01"></path>
+                <path d="M12 8v.01"></path>
+                <path d="M16 8v.01"></path>
+                <path d="M8 12v.01"></path>
+                <path d="M16 12v.01"></path>
+                <path d="M8 16v.01"></path>
+                <path d="M16 16v.01"></path>
+              </svg>
+              <span>Home</span>
+            </a>
+            <a href="favorites.html" class="nav-link active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+              <span>Favorites</span>
+            </a>
+            <a href="about.html" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+              <span>About</span>
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="mobile-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu">
           <a href="index.html" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2Z"></path>
@@ -75,50 +111,9 @@
             <span>About</span>
           </a>
         </div>
-
-        <!-- Mobile menu button -->
-        <button id="mobile-menu-btn" class="mobile-menu-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-        </button>
       </div>
-
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="mobile-menu">
-        <a href="index.html" class="nav-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2Z"></path>
-            <path d="M12 12v8"></path>
-            <path d="M8 8v.01"></path>
-            <path d="M12 8v.01"></path>
-            <path d="M16 8v.01"></path>
-            <path d="M8 12v.01"></path>
-            <path d="M16 12v.01"></path>
-            <path d="M8 16v.01"></path>
-            <path d="M16 16v.01"></path>
-          </svg>
-          <span>Home</span>
-        </a>
-        <a href="favorites.html" class="nav-link active">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-          </svg>
-          <span>Favorites</span>
-        </a>
-        <a href="about.html" class="nav-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M12 16v-4"></path>
-            <path d="M12 8h.01"></path>
-          </svg>
-          <span>About</span>
-        </a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <main>
     <!-- Header -->
@@ -146,7 +141,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
